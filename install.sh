@@ -19,4 +19,7 @@ fi
 cd $SCRIPT_DIR/cargo-pgrx
 
 cargo build --release && \
-cargo install --path .
+cargo install --path . && \
+[ -e "$1/bin/pg_config" ] && \
+printf "Running:\ncargo pgrx init --pg17 $1/bin/pg_config\n" && \
+cargo pgrx init --pg17 "$1/bin/pg_config"
